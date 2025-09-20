@@ -1,0 +1,23 @@
+#Rename all shading groups as "SG_shaderName"
+import maya.cmds as cmds
+
+def rename_shading_groups():
+    # Get all materials in the scene
+    materials = cmds.ls(materials=True)
+
+    for mat in materials:
+        # Find shading groups connected to the material
+        sgs = cmds.listConnections(mat, type='shadingEngine') or []
+        for sg in sgs:
+            # New name = material name + "SG"
+            new_name = mat + "SG"
+            
+            # Avoid renaming if already matches
+            if sg != new_name:
+                try:
+                    cmds.rename(sg, new_name)
+                    print("Renamed {} -> {}".format(sg, new_name))
+                except:
+                    print("Could not rename {} to {}".format(sg, new_name))
+
+rename_shading_groups()

@@ -1,0 +1,20 @@
+import maya.cmds as cmds
+
+·This small script counts the number of meshes you have selected
+
+# count selected meshes
+meshes = cmds.ls(selection=True, dag=True, type='mesh')
+count = len(meshes)
+
+# message
+msg = '<span style="color:white; font-size:14px;">Selected Meshes: {}</span>'.format(count)
+
+# show message in viewport
+cmds.inViewMessage(
+    amg=msg,
+    pos='topCenter',
+    fade=True,
+    fadeStayTime=2000,   # 2 seconds
+    fadeInTime=100,
+    fadeOutTime=200
+)

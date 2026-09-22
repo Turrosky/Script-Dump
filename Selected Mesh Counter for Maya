@@ -1,6 +1,6 @@
-import maya.cmds as cmds
+#This python script counts the number of meshes you have selected, and displays the number at the top of the screen for 2 seconds
 
-·This small script counts the number of meshes you have selected
+import maya.cmds as cmds
 
 # count selected meshes
 meshes = cmds.ls(selection=True, dag=True, type='mesh')

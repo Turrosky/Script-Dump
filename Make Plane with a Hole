@@ -1,0 +1,47 @@
+//MEL CODE. Make a plane with a hole at the center. 16 verts, 8 faces, with the name plantillaAgujero01
+polyPlane -w 1 -h 1 -sx 1 -sy 1 -ax 0 1 0 -cuv 2 -ch 1;
+// Result: pPlane1 polyPlane1
+select -addFirst polyPlane1 ;
+setAttr "polyPlane1.subdivisionsHeight" 4;
+setAttr "polyPlane1.subdivisionsWidth" 4;
+select -r pPlane1.f[5:6] pPlane1.f[9:10] ;
+doDelete;
+select -r pPlane1.vtx[14] ;
+move -r -z -0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[20] ;
+move -r -x -0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[22] ;
+move -r -x 0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[18] ;
+move -r -z -0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[9] ;
+move -r -z 0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[3] ;
+move -r -x 0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[1] ;
+move -r -x -0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[5] ;
+move -r -z 0.25 ;
+SnapToPointRelease; dR_enterForSnap;
+select -r pPlane1.vtx[0:23] ;
+polyMergeVertex  -d 0.001 -am 1 -ch 1 pPlane1.vtx[0:23];
+// Result: polyMergeVert1
+select -d pPlane1.vtx[0:15] ;
+select -d pPlane1.vtx[0:15] ;
+select -d pPlane1.vtx[0:15] ;
+select -r pPlane1.e[18] ;
+select -add pPlane1.e[6:9] pPlane1.e[13] pPlane1.e[15] pPlane1.e[18:19] ;
+polyCircularizeEdge -constructionHistory 1 -alignment 1 -radialOffset 0 -normalOffset 0 -normalOrientation 0 -smoothingAngle 30 -evenlyDistribute 1 -divisions 0 -supportingEdges 0 -twist 0 -relaxInterior 1;
+// Result: polyCircularize1
+select -d pPlane1.e[6:9] pPlane1.e[13] pPlane1.e[15] pPlane1.e[18:19] ;
+select -r pPlane1 ;
+rename "pPlane1" "plantillaAgujero01";
+// Result: plantillaAgujero01
+delete -ch;

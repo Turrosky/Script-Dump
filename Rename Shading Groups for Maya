@@ -1,4 +1,4 @@
-#Rename all shading groups as "SG_shaderName"
+#Python code. Maya. Rename all the shading groups as SG_"shaderName", shaderName being the name of the material the Shading Group is connected to.
 import maya.cmds as cmds
 
 def rename_shading_groups():

@@ -1,4 +1,4 @@
-#Python Code. This code puts the pivot of all selected meshes or groups on the center of the world.
+#Python Code. Maya. This code puts the pivot of all selected meshes or groups on the center of the world.
 import maya.cmds as cmds
 
 def pivot_to_world_center():
